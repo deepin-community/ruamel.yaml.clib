@@ -1,0 +1,48 @@
+ruamel.yaml.clib (0.2.6-1) unstable; urgency=medium
+
+  [ Debian Janitor ]
+  * Update standards version to 4.5.1, no changes needed.
+
+  [ Michael R. Crusoe ]
+  * New upstream version
+  * Standards-Version: 4.6.0 (routine-update)
+
+ -- Michael R. Crusoe <crusoe@debian.org>  Fri, 22 Oct 2021 14:15:45 +0200
+
+ruamel.yaml.clib (0.2.2-1) unstable; urgency=medium
+
+  [ Michael R. Crusoe ]
+  * Mark the binary package as Multi-Arch: same
+
+  [ Ondřej Nový ]
+  * d/control: Update Maintainer field with new Debian Python Team
+    contact address.
+  * d/control: Update Vcs-* fields with new Debian Python Team Salsa
+    layout.
+
+  [ Michael R. Crusoe ]
+  * New upstream version
+  * debhelper-compat 13 (routine-update)
+
+ -- Michael R. Crusoe <crusoe@debian.org>  Thu, 08 Oct 2020 14:56:56 +0200
+
+ruamel.yaml.clib (0.2.0-3) unstable; urgency=medium
+
+  * autopkgtest-pkg-python doesn't work with namespace packages, so don't use
+    it.
+
+ -- Michael R. Crusoe <crusoe@debian.org>  Thu, 18 Jun 2020 16:17:23 +0200
+
+ruamel.yaml.clib (0.2.0-2) unstable; urgency=medium
+
+  * Testsuite: autopkgtest-pkg-python (routine-update)
+  * Rules-Requires-Root: no (routine-update)
+  * Breaks+Replaces ruamel.yaml before 0.16.10 (Closes: #962971)
+
+ -- Michael R. Crusoe <crusoe@debian.org>  Wed, 17 Jun 2020 10:22:10 +0200
+
+ruamel.yaml.clib (0.2.0-1) unstable; urgency=medium
+
+  * Initial packaging (Closes: #955282)
+
+ -- Michael R. Crusoe <crusoe@debian.org>  Thu, 04 Jun 2020 13:31:19 +0200

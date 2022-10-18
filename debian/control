@@ -1,0 +1,26 @@
+Source: ruamel.yaml.clib
+Section: python
+Priority: optional
+Maintainer: Debian Python Team <team+python@tracker.debian.org>
+Uploaders: Michael R. Crusoe <crusoe@debian.org>
+Build-Depends: debhelper-compat (= 13),
+               dh-python,
+               cython3,
+               python3-all-dev,
+               python3-setuptools
+Standards-Version: 4.6.0
+Vcs-Browser: https://salsa.debian.org/python-team/packages/ruamel.yaml.clib
+Vcs-Git: https://salsa.debian.org/python-team/packages/ruamel.yaml.clib.git
+Homepage: https://sourceforge.net/p/ruamel-yaml-clib
+Rules-Requires-Root: no
+
+Package: python3-ruamel.yaml.clib
+Architecture: any
+Multi-Arch: same
+Depends: ${shlibs:Depends}, ${misc:Depends}, ${python3:Depends}
+Breaks: python3-ruamel.yaml (<< 0.16.10)
+Replaces: python3-ruamel.yaml (<< 0.16.10)
+Description: C version of reader, parser and emitter for ruamel.yaml
+ This package was split of from ruamel.yaml, so that ruamel.yaml can be build
+ as a universal wheel as the C code is seldom changing, and it takes a long
+ time to compile for all platforms,
