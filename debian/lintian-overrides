@@ -1,3 +1,3 @@
 # No static linking is done. The internal yaml library happens to also
 # be named libyaml, hence the confusion.
-python3-ruamel.yaml.clib: embedded-library usr/lib/python3/dist-packages/_ruamel_yaml.cpython-*.so: libyaml
+python3-ruamel.yaml.clib: embedded-library libyaml [usr/lib/python3/dist-packages/_ruamel_yaml.cpython-*.so]

@@ -6,9 +6,10 @@ Uploaders: Michael R. Crusoe <crusoe@debian.org>
 Build-Depends: debhelper-compat (= 13),
                dh-python,
                cython3,
+               pybuild-plugin-pyproject,
                python3-all-dev,
                python3-setuptools
-Standards-Version: 4.6.0
+Standards-Version: 4.6.2
 Vcs-Browser: https://salsa.debian.org/python-team/packages/ruamel.yaml.clib
 Vcs-Git: https://salsa.debian.org/python-team/packages/ruamel.yaml.clib.git
 Homepage: https://sourceforge.net/p/ruamel-yaml-clib

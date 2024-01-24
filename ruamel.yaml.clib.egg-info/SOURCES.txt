@@ -9,6 +9,7 @@ dumper.c
 emitter.c
 loader.c
 parser.c
+pyproject.toml
 reader.c
 scanner.c
 setup.py
@@ -17,10 +18,8 @@ yaml.h
 yaml_private.h
 ./LICENSE
 ./__init__.py
-.ruamel/__init__.py
-.ruamel/yaml/__init__.py
 ruamel.yaml.clib.egg-info/PKG-INFO
 ruamel.yaml.clib.egg-info/SOURCES.txt
 ruamel.yaml.clib.egg-info/dependency_links.txt
-ruamel.yaml.clib.egg-info/namespace_packages.txt
+ruamel.yaml.clib.egg-info/not-zip-safe
 ruamel.yaml.clib.egg-info/top_level.txt
