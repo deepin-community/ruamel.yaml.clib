@@ -1,0 +1,10 @@
+#!/bin/sh
+
+set -e -u
+
+cp -r debian/tests/data "$AUTOPKGTEST_TMP"
+cd "$AUTOPKGTEST_TMP/data"
+
+for py in $(py3versions -s); do
+    $py -m pytest -v test-yaml.py
+done
