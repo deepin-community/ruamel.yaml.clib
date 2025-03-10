@@ -1,0 +1,47 @@
+#!/bin/bash
+
+# This script is called by uscan(1) as:
+# get-hg-version --upstream-version <version>
+
+# We create a temporary directory, clone the upstream repository into it,
+# check out the current upstream version, tar this directory, and then
+# copy it to the parent directory in place of the existing downloaded
+# .orig.tar.gz file.
+
+if [ "$1" != "--upstream-version" ]
+then
+    echo "Script called with unexpected arguments: $*" >&2
+    echo "Expected $0 --upstream-version <uversion>" >&2
+    exit 1
+fi
+
+if ! hg --version > /dev/null
+then
+    echo 'Need to install the "mercurial" package to run uscan on ruamel.yaml.clib' >&2
+    exit 1
+fi
+
+PACKAGE=ruamel.yaml.clib
+PACKAGE_DASH=ruamel-yaml-clib
+PWD=$(pwd)
+cd ..
+PPWD=$(pwd)
+TMP=$(mktemp -d)
+trap "rm -rf '$TMP'" INT QUIT TERM EXIT
+
+uversion=$2
+cd "$TMP"
+
+hg clone http://hg.code.sf.net/p/${PACKAGE_DASH}/code $PACKAGE-$uversion
+cd $PACKAGE-$uversion
+hg update $uversion
+cd ..
+mv $PACKAGE-$uversion $PACKAGE-$uversion+ds
+tar Jcpf ${PACKAGE}_$uversion+ds.orig.tar.xz --exclude=.hg $PACKAGE-$uversion+ds
+rm -f "$PPWD"/${PACKAGE}_$uversion.orig.tar.gz
+mv ${PACKAGE}_$uversion+ds.orig.tar.xz "$PPWD"
+cd "$PWD"
+rm -rf "$TMP"
+
+trap - INT QUIT TERM EXIT
+

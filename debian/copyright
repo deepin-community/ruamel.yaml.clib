@@ -1,13 +1,15 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: ruamel.yaml.clib
+Upstream-Contact: Anthon van der Neut <a.van.der.neut@ruamel.eu>
 Source: https://sourceforge.net/p/ruamel-yaml-clib/code/ci/default/tree
+Comment: Cloned and repacked from SourceForge repository
 
 Files: *
-Copyright: 2019, Anthon van der Neut, Ruamel bvba <a.van.der.neut@ruamel.eu>
+Copyright: 2019-204, Anthon van der Neut, Ruamel bvba <a.van.der.neut@ruamel.eu>
 License: Expat
 
 Files: debian/*
-Copyright: 2020 Michael R. Crusoe <michael.crusoe@gmail.com>
+Copyright: 2020-2025 Michael R. Crusoe <crusoe@debian.org>
 License: Expat
 
 License: Expat

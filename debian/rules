@@ -1,30 +1,25 @@
 #!/usr/bin/make -f
 
 export PYBUILD_NAME=ruamel.yaml.clib
-export RUAMEL_NO_PIP_INSTALL_CHECK=True
-#PYBUILD_INSTALL_ARGS=--single-version-externally-managed
+export PYBUILD_INSTALL_ARGS=--single-version-externally-managed
 
 # DH_VERBOSE := 1
 export LC_ALL=C.UTF-8
-
-include /usr/share/dpkg/default.mk
-# this provides:
-# DEB_SOURCE: the source package name
-# DEB_VERSION: the full version of the package (epoch + upstream vers. + revision)
-# DEB_VERSION_EPOCH_UPSTREAM: the package's version without the Debian revision
-# DEB_VERSION_UPSTREAM_REVISION: the package's version without the Debian epoch
-# DEB_VERSION_UPSTREAM: the package's upstream version
-# DEB_DISTRIBUTION: the distribution(s) listed in the current entry of debian/changelog
-# SOURCE_DATE_EPOCH: the source release date as seconds since the epoch, as
-#                    specified by <https://reproducible-builds.org/specs/source-date-epoch/>
 
 # for hardening you might like to uncomment this:
 export DEB_BUILD_MAINT_OPTIONS=hardening=+all
 
 %:
-	dh $@ --with python3 --buildsystem=pybuild
+	dh $@ --buildsystem=pybuild
 
-override_dh_auto_test:
-ifeq (,$(filter nocheck,$(DEB_BUILD_OPTIONS)))
-	echo "There is no test suite available"
-endif
+execute_before_dh_auto_build:
+	# We cannot run cython in a directory with a non-valid Python name
+	mkdir ruamel.yaml.clib
+	cp _ruamel_yaml.[hp]* yaml.h ruamel.yaml.clib
+	cd ruamel.yaml.clib && cython -3 -I . _ruamel_yaml.pyx
+	mv _ruamel_yaml.c _ruamel_yaml.c.orig
+	mv ruamel.yaml.clib/_ruamel_yaml.c .
+
+execute_after_dh_auto_build:
+	mv _ruamel_yaml.c.orig _ruamel_yaml.c
+	rm -rf ruamel.yaml.clib
