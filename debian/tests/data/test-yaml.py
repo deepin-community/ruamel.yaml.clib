@@ -1,15 +1,15 @@
 # very crude smoke test of the yaml package
 
-import ruamel.yaml as yaml
+from ruamel.yaml import YAML
 
 
 def test_load_clib():
     import ruamel.yaml.cyaml
 
 def test_safe_load():
-
+    yaml = YAML(typ="safe", pure=False)
     with open("test-yaml.yaml") as fh:
-        y = yaml.safe_load(fh)
+        y = yaml.load(fh)
 
     assert len(y['testdata']) == 2
 
